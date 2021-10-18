@@ -141,3 +141,6 @@ class EmotionNet(nn.Module):
 
 - **Use 64 batches per each training epoch**
 - **Use 50 epochs to train**
+___
+### Result of Simpler model
+![result](./result_cnn.png)
