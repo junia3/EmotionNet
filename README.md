@@ -1,6 +1,13 @@
 # EmotionNet
 ## Emotional detection with face landmark detection
+https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge  
+This is current work on final project in Application Programming.
+To verify emotion network.
+- emotion.py : file with train mode, service mode(real time), image_test mode
+- train.py : define training on Network
+- data.py : dataset and dataloader used in Network
 ---
+  
 1. This is the model concatenate Dlib model with emotion detection model
 2. Training and Validation data used FER-2013
 3. ADAM Optimizer
