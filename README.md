@@ -39,6 +39,7 @@ Extract this file into repository, It should looks like this.
 ___
 ## Download required packages
 1. pip install pytorch
+    - Or you can use conda install pytorch instead
 2. pip install cmake
 3. pip install opencv-python
 4. pip install torchvision
