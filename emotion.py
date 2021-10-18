@@ -116,4 +116,4 @@ elif mode == 'train':
     summary_(model, (1, 48, 48), batch_size = batch_size)
     train_dataloader = DataLoader(train_dataset, batch_size = batch_size, shuffle = True)
     val_dataloader = DataLoader(val_dataset, batch_size = batch_size, shuffle = True)
-    train(num_epoch, train_dataloader, val_dataloader, model, args)
+    train(num_epoch, train_dataloader, val_dataloader, model, args, device)

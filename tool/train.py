@@ -8,7 +8,7 @@ def log_progress(epoch, num_epoch, iteration, num_data, batch_size, loss, acc):
     print("Epoch : %d/%d >>>> train : %d/%d(%.2f%%) ( " % (epoch, num_epoch, iteration, num_data // batch_size, iteration / (num_data // batch_size) * 100)
           + '=' * progress + '>' + ' ' * (25 - progress) + " ) loss : %.6f, accuracy : %.2f%%" % (loss, acc * 100), end='\r')
 
-def train(n_epoch, train_loader, val_loader, model, args):
+def train(n_epoch, train_loader, val_loader, model, args, device):
 
     num_train = args['num_train']
     num_val = args['num_val']
@@ -24,8 +24,8 @@ def train(n_epoch, train_loader, val_loader, model, args):
         train_loss = 0.0
         train_acc = 0.0
         for i, (data, data_label) in enumerate(train_loader):
-            input = data.unsqueeze(1).float()
-            target = data_label
+            input = data.unsqueeze(1).float().to(device)
+            target = data_label.to(device)
 
             output = model(input)
             loss = criterion(output, target)
