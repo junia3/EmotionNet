@@ -39,13 +39,12 @@ Extract this file into repository, It should looks like this.
 ___
 ## Download required packages
 1. pip install pytorch
-2. pip install cv2
-3. pip install cmake
-4. pip install opencv-python
-5. pip install torchvision
-6. pip install imutils
-7. pip install torchsummary
-8. ...
+2. pip install cmake
+3. pip install opencv-python
+4. pip install torchvision
+5. pip install imutils
+6. pip install torchsummary
+7. ...
 
 If there is any error message with running code, you can install it in your virtual env with "pip + install + packagename"
 
