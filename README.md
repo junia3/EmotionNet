@@ -64,3 +64,80 @@ ___
 ```
 
 ___
+## Logging example code
+
+```python
+def log_progress(epoch, num_epoch, iteration, num_data, batch_size, loss, acc):
+    progress = int(iteration / (num_data // batch_size) * 100 // 4)
+    print("Epoch : %d/%d >>>> train : %d/%d(%.2f%%) ( " % (epoch, num_epoch, iteration, num_data // batch_size, iteration / (num_data // batch_size) * 100)
+          + '=' * progress + '>' + ' ' * (25 - progress) + " ) loss : %.6f, accuracy : %.2f%%" % (loss, acc * 100), end='\r')
+```
+
+___
+## Simpler model you can use
+
+Model structure is imple, but validation/test accuracy not good.
+
+```python
+import torch
+import torch.nn as nn
+
+class EmotionNet(nn.Module):
+    def __init__(self, num_classes = 7, init_weights = True):
+        super(EmotionNet, self).__init__()
+        self.conv1 = nn.Sequential(nn.Conv2d(in_channels = 1,
+                                            out_channels = 32,
+                                            kernel_size = 3,
+                                            stride = 1),
+                                    nn.ReLU(),
+                                    nn.Conv2d(in_channels = 32,
+                                            out_channels = 64,
+                                            kernel_size = 3,
+                                            stride = 1),
+                                    nn.ReLU(),
+                                    nn.MaxPool2d(kernel_size = 2),
+                                    nn.Dropout(0.25))
+        
+        self.conv2 = nn.Sequential(nn.Conv2d(in_channels = 64,
+                                              out_channels = 128,
+                                              kernel_size = 3,
+                                              stride = 1),
+                                    nn.ReLU(),
+                                    nn.MaxPool2d(kernel_size = 2, stride = 2),
+                                    nn.Conv2d(in_channels = 128,
+                                              out_channels = 128,
+                                              kernel_size = 3,
+                                              stride = 1),
+                                    nn.ReLU(),
+                                    nn.MaxPool2d(kernel_size = 2),
+                                    nn.Dropout(0.25))
+
+        self.linear = nn.Sequential(nn.Linear(in_features = 4*4*128, out_features = 1024),
+                                    nn.ReLU(),
+                                    nn.Dropout(0.5),
+                                    nn.Linear(in_features = 1024, out_features = num_classes))
+
+        if init_weights:
+            self._initailize_weight()
+
+    def _initailize_weight(self):
+        for module in self.modules():
+            if isinstance(module, nn.Conv2d):
+                nn.init.kaiming_normal_(module.weight, mode = 'fan_out', nonlinearity = 'relu')
+                if module.bias is None:
+                    nn.init.constant_(module.bias, 0)
+
+            elif isinstance(module, nn.Linear):
+                nn.init.normal_(module.weight, 0, 0.01)
+                nn.init.constant_(module.bias, 0)
+
+    def forward(self, input):
+        output = self.conv1(input)
+        output = self.conv2(output)
+        output = torch.flatten(output, 1)
+        output = self.linear(output)
+        return output
+```
+
+- **Use 64 batches per each training epoch**
+- **Use 50 epochs to train**
