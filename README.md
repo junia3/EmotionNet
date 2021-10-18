@@ -52,7 +52,8 @@ ___
 4. pip install torchvision
 5. pip install imutils
 6. pip install torchsummary
-7. ...
+7. pip install dlib
+8. ... 이후에도 설치할 게 좀 있음
 
 If there is any error message with running code, you can install it in your virtual env with "pip + install + packagename"
 
