@@ -149,4 +149,4 @@ ___
 ## Additional contents  
 CPU/GPU RAM capacity issue가 생겨서
 training시에 2 epoch 이후로 학습이 안되는 경우 생김 -> 고용량 GPU로 갈아탐..ㅠ
-그리고 에폭마다 cache를 비우도록 해서 학습을 진행.. 어떻게 될까?
+그리고 에폭마다 cache를 비우도록 해서 학습을 진행.. 어떻게 될려나
