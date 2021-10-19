@@ -169,3 +169,4 @@ ___
 ___
 ## Additional contents  
 Trying to build efficient model to get reasonable inference speed and accuracy.
+The model in **/model** is just an example.
