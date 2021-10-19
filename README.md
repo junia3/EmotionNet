@@ -72,7 +72,28 @@ def log_progress(epoch, num_epoch, iteration, num_data, batch_size, loss, acc):
     print("Epoch : %d/%d >>>> train : %d/%d(%.2f%%) ( " % (epoch, num_epoch, iteration, num_data // batch_size, iteration / (num_data // batch_size) * 100)
           + '=' * progress + '>' + ' ' * (25 - progress) + " ) loss : %.6f, accuracy : %.2f%%" % (loss, acc * 100), end='\r')
 ```
+pycharm과 같은 IDE에서는 위를 사용하면 되고
+jupyter notebook이나 Colab 등등에서는 '\r'이 의도대로 작동을 안해서 출력이 아예 안보이더라고? 그래서 밑에로 대체해서 사용함  
 
+```python
+def log_progress(epoch, num_epoch, iteration, num_data, batch_size, loss, acc):
+    progress = int(iteration / (num_data // batch_size) * 100 // 4)
+    print("Epoch : %d/%d >>>> train : %d/%d(%.2f%%) ( " % (epoch, num_epoch, iteration, num_data // batch_size, iteration / (num_data // batch_size) * 100)
+          + '=' * progress + '>' + ' ' * (25 - progress) + " ) loss : %.6f, accuracy : %.2f%%" % (loss, acc * 100))
+```
+
+**근데 이렇게 하면 각 iteration 마다 줄이 출력이 되니까**  
+**크롬 창에서 출력 지우기를 콘솔에 넣어 사용하거나 아니면 걍 iteration % ?? 조건을 넣어서 출력 수를 줄이는 방법 추천**
+```javascript
+function CleanCurrentOutput() {
+ var btn = document.querySelector(".output-icon.clear_outputs_enabled.output-icon-selected[title$='현재 실행 중...'] iron-icon[command=clear-focused-or-selected-outputs]");
+ if(btn) {
+  console.log("10분마다 출력 지우기");
+  btn.click();
+  }
+ }
+setInterval(CleanCurrentOutput, 1000 * 60 * 10);
+```
 ___
 ## Simpler model you can use
 
