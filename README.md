@@ -255,12 +255,11 @@ class EmotionNet_light(nn.Module):
         return output
 ```
 
-**epoch = 50
-**learning rate = 3e-4
-**batch size = 32
-**optimizer, lr_scheduler = Adam, StepLR(10, 0.5)
-
--> but I think it is too much for validation
+**epoch = 50**  
+**learning rate = 3e-4**  
+**batch size = 32**  
+**optimizer, lr_scheduler = Adam, StepLR(10, 0.5)**  
+- but I think it is too much for validation
 ---
 ## This is the result
 ![result](./result.png)
