@@ -261,3 +261,6 @@ class EmotionNet_light(nn.Module):
 **optimizer, lr_scheduler = Adam, StepLR(10, 0.5)
 
 -> but I think it is too much for validation
+---
+## This is the result
+![result](./result.png)
