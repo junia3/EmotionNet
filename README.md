@@ -32,9 +32,7 @@ ___
 ```
 
 ___
-## Download dataset from drive
-https://drive.google.com/file/d/1UB6LmoIsE-V0FnFICI5WDEj5ZJBkogem/view?usp=sharing
-
+## Download dataset(FER2013)
 Extract this file into repository, It looks like this.
 
 > emotion_net
